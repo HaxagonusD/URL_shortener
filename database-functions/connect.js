@@ -1,9 +1,12 @@
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const url = process.env.MONGODB_CONNECTION_URL;
+console.log(url);
 const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
