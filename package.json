@@ -12,5 +12,11 @@
     "mongodb": "^4.2.1",
     "morgan": "^1.10.0",
     "valid-url": "^1.0.9"
+  },
+  "engines": {
+    "node": "16.13.0"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
