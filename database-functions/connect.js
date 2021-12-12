@@ -1,0 +1,27 @@
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const url = process.env.MONGODB_CONNECTION_URL;
+const client = new MongoClient(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+let dbConnection;
+let urlCollection;
+
+export const connectToServer = async (callback) => {
+  //error handling should be done
+  await client.connect().then(() => {
+    if (callback) {
+      callback();
+    }
+  });
+  dbConnection = client.db("UrlShortenerUrls");
+  urlCollection = dbConnection.collection("UrlCollection");
+};
+
+export const getDb = () => dbConnection;
+export const getUrlCollection = () => urlCollection;
