@@ -37,7 +37,7 @@ app.post("/api/v1/shorturl", async (req, res) => {
   });
 });
 
-app.get("/:shorturlredirect", (req, res) => {
+app.get("/s/:shorturlredirect", (req, res) => {
   const shorturlredirect = req.params.shorturlredirect;
   console.log("shorturlredirect", shorturlredirect);
   getUrlDocumentByShortUrl(shorturlredirect).then((result) => {
