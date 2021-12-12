@@ -17,7 +17,6 @@
     "node": "16.13.0"
   },
   "scripts": {
-    "start": "node app.js",
-    "heroku-postbuild": "rm -f package-lock.json && yarn install && cd client && yarn install && yarn run build"
+    "start": "yarn install && cd client && yarn install && yarn run build && cd .. && yarn start"
   }
 }
