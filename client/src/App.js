@@ -10,8 +10,7 @@ function App() {
     console.log(longUrl);
   };
 
-  const handleClick = async (event) => {
-    event.target.preventDefault();
+  const handleClick = async () => {
     const data = await createShortUrl(longUrl);
     console.log(data);
     setShortUrl(data.shortUrl);
