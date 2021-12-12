@@ -16,7 +16,10 @@ function App() {
     setShortUrl(data.shortUrl);
   };
 
-  const baseUrl = "http://localhost:5000/";
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? process.env.LOCAL_URL
+      : process.env.PROD_URL;
 
   return (
     <div className="App">
