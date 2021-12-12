@@ -7,6 +7,7 @@ import getUniqueId from "./database-functions/getUniqueId.js";
 import storeUrl from "./database-functions/storeURL.js";
 import getUrlDocumentByShortUrl from "./database-functions/getUrlDocumentByShortUrl.js";
 import validUrl from "valid-url";
+import cors from "cors";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 app.post("/api/v1/shorturl", async (req, res) => {
   const longUrl = req.body.url;
