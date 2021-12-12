@@ -40,19 +40,17 @@ app.post("/api/v1/shorturl", async (req, res) => {
 app.get("/:shorturlredirect", (req, res) => {
   const shorturlredirect = req.params.shorturlredirect;
   getUrlDocumentByShortUrl(shorturlredirect).then((result) => {
-    console.log(result.longUrl);
+    console.log("result.longurl", result.longUrl);
     res.redirect(result.longUrl);
   });
 });
 
-if (process.env.NODE_ENV === "production") {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, "client/build")));
-  //     // Handle React routing, return all requests to React app
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"));
-  });
-}
+// Serve any static files
+app.use(express.static(path.join(__dirname, "client/build")));
+//     // Handle React routing, return all requests to React app
+app.get("*", function (_, res) {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
 
 //Starting the server
 const port = process.env.PORT || 5000;

@@ -7,6 +7,7 @@ if (process.env.NODE_ENV !== "production") {
 
 const url = process.env.MONGODB_CONNECTION_URL;
 console.log(url);
+
 const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -17,11 +18,14 @@ let urlCollection;
 
 export const connectToServer = async (callback) => {
   //error handling should be done
-  await client.connect().then(() => {
-    if (callback) {
-      callback();
-    }
-  });
+  await client
+    .connect()
+    .then(() => {
+      if (callback) {
+        callback();
+      }
+    })
+    .catch((err) => console.log(err));
   dbConnection = client.db("UrlShortenerUrls");
   urlCollection = dbConnection.collection("UrlCollection");
 };

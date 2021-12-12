@@ -12,6 +12,7 @@ function App() {
 
   const handleClick = async () => {
     const data = await createShortUrl(longUrl);
+    console.log(data);
     setShortUrl(data.shortUrl);
   };
 
