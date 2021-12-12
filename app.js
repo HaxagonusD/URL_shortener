@@ -10,6 +10,9 @@ import validUrl from "valid-url";
 import cors from "cors";
 import path from "path";
 
+const moduleURL = new URL(import.meta.url);
+const __dirname = path.dirname(moduleURL.pathname);
+
 dotenv.config();
 
 const app = express();
