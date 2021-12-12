@@ -8,6 +8,7 @@ import storeUrl from "./database-functions/storeURL.js";
 import getUrlDocumentByShortUrl from "./database-functions/getUrlDocumentByShortUrl.js";
 import validUrl from "valid-url";
 import cors from "cors";
+import path from "path";
 
 dotenv.config();
 
