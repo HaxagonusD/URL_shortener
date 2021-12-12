@@ -1,4 +1,3 @@
-import getUniqueId from "../database-functions/getUniqueId.js";
 const { createHash } = await import("crypto");
 
 const shortenURL = (url, uniquePhrase) => {
