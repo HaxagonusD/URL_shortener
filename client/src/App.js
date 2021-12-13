@@ -1,6 +1,6 @@
 import { useState } from "react";
 import createShortUrl from "./utils/createShortUrl";
-import { Box, TextField, Button, Link } from "@mui/material";
+import { Box, TextField, Button, Link, Typography } from "@mui/material";
 
 function App() {
   const [longUrl, setLongUrl] = useState("");
@@ -40,6 +40,14 @@ function App() {
         backgroundColor: "#f7f9ff",
       }}
     >
+      <Typography
+        sx={{
+          marginBottom: "1rem",
+        }}
+        variant="h2"
+      >
+        Enter a URL to shorten it
+      </Typography>
       <Box
         sx={{
           display: "flex",
