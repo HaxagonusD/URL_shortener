@@ -71,7 +71,7 @@ function App() {
       <Box>
         {shortUrl ? (
           <Link variant="h4" underlineNone href={baseUrl + shortUrl}>
-            {baseUrl + shortUrl}
+            {baseUrl + "s/" + shortUrl}
           </Link>
         ) : (
           ""
