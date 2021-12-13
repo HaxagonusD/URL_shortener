@@ -1,5 +1,6 @@
 import { useState } from "react";
 import createShortUrl from "./utils/createShortUrl";
+import { Box, TextField, Button, Link } from "@mui/material";
 
 function App() {
   const [longUrl, setLongUrl] = useState("");
@@ -11,28 +12,72 @@ function App() {
   };
 
   const handleClick = async () => {
-    const data = await createShortUrl(longUrl);
+    const urlToSend =
+      longUrl.includes("https://www.") || longUrl.includes("http://www.")
+        ? longUrl
+        : "http://www." + longUrl;
+
+    const data = await createShortUrl(urlToSend);
     console.log(data);
     setShortUrl(data.shortUrl);
   };
 
   const baseUrl =
     process.env.NODE_ENV === "production"
-      ? process.env.LOCAL_URL
-      : process.env.PROD_URL;
+      ? process.env.REACT_APP_PROD_URL
+      : process.env.REACT_APP_LOCAL_URL;
+
+  console.log(baseUrl);
 
   return (
-    <div className="App">
-      <input onChange={updateInput}></input>
-      <button onClick={handleClick}>Create Short url</button>
-      {shortUrl ? (
-        <div>
-          <a href={baseUrl + shortUrl}>{baseUrl + shortUrl}</a>
-        </div>
-      ) : (
-        "Nothing Yet!"
-      )}
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        height: "100vh",
+        backgroundColor: "#f7f9ff",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+        }}
+      >
+        <TextField
+          fullwidth
+          size="small"
+          placeholder="https://www."
+          onChange={updateInput}
+          sx={{
+            width: "33%",
+          }}
+        ></TextField>
+        <Button
+          sx={{
+            height: "2.25rem",
+            marginLeft: ".5rem",
+          }}
+          size="large"
+          variant="contained"
+          onClick={handleClick}
+        >
+          Short it!
+        </Button>
+      </Box>
+      <Box>
+        {shortUrl ? (
+          <Link variant="h4" underlineNone href={baseUrl + shortUrl}>
+            {baseUrl + shortUrl}
+          </Link>
+        ) : (
+          ""
+        )}
+      </Box>
+    </Box>
   );
 }
 
