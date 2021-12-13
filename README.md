@@ -4,7 +4,7 @@
 
 ### Click here to try it yourself
 
-- (Url Shortener)[https://securityshort.herokuapp.com/]
+- [Url Shortener](https://securityshort.herokuapp.com/)
 
 ### Steps to Run
 
