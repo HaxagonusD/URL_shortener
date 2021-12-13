@@ -2,9 +2,7 @@ import axios from "axios";
 
 const createShortUrl = async (longUrl) => {
   const baseUrl =
-    process.env.NODE_ENV === "production"
-      ? process.env.REACT_APP_BASE_URL_PROD
-      : "";
+    process.env.NODE_ENV === "production" ? process.env.REACT_APP_PROD_URL : "";
 
   const response = await axios.post(baseUrl + "api/v1/shorturl", {
     url: longUrl,
