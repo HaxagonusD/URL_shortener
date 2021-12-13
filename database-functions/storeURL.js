@@ -1,6 +1,7 @@
 import { getUrlCollection } from "./connect.js";
 import { ObjectId } from "mongodb";
 
+// store the short url and the long url in the databse together in the document specified by location
 const storeUrl = async (location, shortUrl, longUrl) => {
   try {
     const updateOneResult = await getUrlCollection().updateOne(

@@ -12,12 +12,11 @@ const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+//reference to the relevant collections in the database
 let dbConnection;
 let urlCollection;
-
+//connect to the server
 export const connectToServer = async (callback) => {
-  //error handling should be done
   await client
     .connect()
     .then(() => {

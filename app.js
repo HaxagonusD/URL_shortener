@@ -21,6 +21,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
 
+//Takes in the long url returns the short url as a response
 app.post("/api/v1/shorturl", async (req, res) => {
   const longUrl = req.body.url;
   if (validUrl.isHttpsUri(longUrl) || validUrl.isHttpUri(longUrl)) {
@@ -37,6 +38,7 @@ app.post("/api/v1/shorturl", async (req, res) => {
   });
 });
 
+// redirects to the long url given the short url as a parameter
 app.get("/s/:shorturlredirect", (req, res) => {
   const shorturlredirect = req.params.shorturlredirect;
   console.log("shorturlredirect", shorturlredirect);
@@ -48,7 +50,7 @@ app.get("/s/:shorturlredirect", (req, res) => {
 
 // Serve any static files
 app.use(express.static(path.join(__dirname, "client/build")));
-//     // Handle React routing, return all requests to React app
+// Handle React routing, return all requests to React app
 app.get("*", function (_, res) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
