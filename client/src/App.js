@@ -11,11 +11,20 @@ function App() {
     console.log(longUrl);
   };
 
+  const addHttp = (longUrl) => {
+    if (!longUrl.includes("https://") || !longUrl.includes("http://")) {
+      return "https://" + longUrl;
+    }
+  };
+
   const handleClick = async () => {
     const urlToSend =
-      longUrl.includes("https://www.") || longUrl.includes("http://www.")
+      longUrl.includes("https://www.") ||
+      longUrl.includes("http://www.") ||
+      longUrl.includes("http://") ||
+      longUrl.includes("https://")
         ? longUrl
-        : "http://www." + longUrl;
+        : addHttp(longUrl);
 
     const data = await createShortUrl(urlToSend);
     console.log(data);
